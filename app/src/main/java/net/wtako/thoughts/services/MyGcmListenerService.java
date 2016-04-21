@@ -42,7 +42,7 @@ public class MyGcmListenerService extends GcmListenerService {
         }
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_new_releases_black_24dp)
+                .setSmallIcon(R.drawable.ic_new_releases_white_24dp)
                 .setColor(getResources().getColor(R.color.colorAccent))
                 .setContentTitle(getString(R.string.hashtag_matched, data.getString("hashtag")))
                 .setContentText(getString(R.string.hashtag_matched_id_title, data.getString("id"), data.getString("title")))
