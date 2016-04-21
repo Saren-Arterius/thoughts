@@ -118,6 +118,8 @@
     <string name="voting">Voting</string>
     <string name="deleting">Deleting thought #%1$d</string>
     <string name="delete_success">Successfully deleted your thought #%1$d</string>
+    <string name="hashtag_matched">HashTag matched: #%1$s</string>
+    <string name="hashtag_matched_id_title">#%1$s - %2$s</string>
 
 
 </resources>

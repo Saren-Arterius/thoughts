@@ -28,6 +28,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import net.wtako.thoughts.R;
+import net.wtako.thoughts.Thoughts;
 import net.wtako.thoughts.utils.Database;
 import net.wtako.thoughts.utils.DatabaseData;
 
@@ -298,6 +299,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                                 data.addUnique(hashTag).save(false);
                             }
                             data.save(false);
+                            Thoughts.tryStartGCM(getActivity());
                             hashTagMonitor();
                         }
                     }).cancelListener(new DialogInterface.OnCancelListener() {

@@ -21,6 +21,7 @@ import android.view.View;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import net.wtako.thoughts.R;
+import net.wtako.thoughts.Thoughts;
 import net.wtako.thoughts.data.FeaturedType;
 import net.wtako.thoughts.data.TimeSpan;
 import net.wtako.thoughts.fragments.FeaturedThoughtListFragment;
@@ -63,6 +64,9 @@ public class MainActivity extends BaseThoughtActivity implements IHasTimeSpan, I
         mCtl.setTitleEnabled(false);
         mTabLayout = ButterKnife.findById(this, R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);
+        if (getIntent().getBooleanExtra("show_latest", false)) {
+            mViewPager.setCurrentItem(FeaturedType.LATEST.ordinal(), false);
+        }
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +96,10 @@ public class MainActivity extends BaseThoughtActivity implements IHasTimeSpan, I
 
         NavigationView navigationView = ButterKnife.findById(this, R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Thoughts.tryStartGCM(this);
     }
+
 
     @Override
     public int getThoughtActionMenuID() {

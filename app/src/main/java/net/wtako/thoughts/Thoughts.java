@@ -1,11 +1,17 @@
 package net.wtako.thoughts;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.Gson;
+
+import net.wtako.thoughts.services.RegistrationIntentService;
 
 public class Thoughts extends Application {
 
@@ -26,8 +32,10 @@ public class Thoughts extends Application {
      */
 
     // public static final String AUTHORITY = "http://192.168.0.100:3000";
+
     public static final String AUTHORITY = "https://thoughts.wtako.net";
     public static final Gson sGson = new Gson();
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static Context sInstance;
     private static SharedPreferences sSharedPreferences;
 
@@ -42,11 +50,31 @@ public class Thoughts extends Application {
         return sSharedPreferences;
     }
 
+    public static void tryStartGCM(Activity activity) {
+        if (checkPlayServices(activity)) {
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(activity, RegistrationIntentService.class);
+            activity.startService(intent);
+        }
+    }
+
+    private static boolean checkPlayServices(Activity activity) {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(activity);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(activity, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            }
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         // Fabric.with(this, new Crashlytics());
         sInstance = getApplicationContext();
     }
-
 }
