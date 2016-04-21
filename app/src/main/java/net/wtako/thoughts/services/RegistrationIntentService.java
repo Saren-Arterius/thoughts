@@ -88,7 +88,7 @@ public class RegistrationIntentService extends IntentService {
     private void subscribeTopics(String token) throws IOException {
         GcmPubSub pubSub = GcmPubSub.getInstance(this);
         for (String hashTag : Database.getMonitoredHashTags(getBaseContext()).getSavedData()) {
-            pubSub.subscribe(token, "/topics/" + hashTag, null);
+            pubSub.subscribe(token, "/topics/" + hashTag.toLowerCase(), null);
         }
     }
     // [END subscribe_topics]
