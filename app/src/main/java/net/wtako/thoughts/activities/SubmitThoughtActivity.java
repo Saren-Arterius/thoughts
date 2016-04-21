@@ -135,6 +135,7 @@ public class SubmitThoughtActivity extends BaseThoughtActivity {
             return;
         }
         if (mMyThought != null) {
+            thought.setID(mMyThought.getID());
             thought.setAdminToken(mMyThought.getAdminToken());
         }
         if (previewFrag != null && previewFrag instanceof PreviewThoughtFragment) {

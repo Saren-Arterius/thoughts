@@ -11,6 +11,10 @@ public class MyThought extends Thought {
         super(mID, mTitle, mContent, mRating, mHashTags, mDate);
     }
 
+    public void setID(int newID) {
+        id = newID;
+    }
+
     public String getAdminToken() {
         return adminToken;
     }
