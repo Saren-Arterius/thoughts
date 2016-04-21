@@ -141,8 +141,8 @@ public class ThoughtActionMenuSetup implements PopupMenu.OnMenuItemClickListener
             @Override
             public void onResponse(JSONObject response) {
                 pd.dismiss();
-                Database.getFavouriteThoughts(mActivity).getSavedData().remove(mThought);
-                Database.getFavouriteThoughts(mActivity).save(true);
+                Database.getMyThoughts(mActivity).getSavedData().remove(mThought);
+                Database.getMyThoughts(mActivity).save(true);
                 if (mActivity instanceof IUpdateThought) {
                     ((IUpdateThought) mActivity).deleteThought(mThought.getID());
                 }
