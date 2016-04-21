@@ -1,0 +1,103 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/title_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="16dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/title_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:hint="@string/title_hint">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:textColor="@android:color/black" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/content_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title_cardview"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="16dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/content_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:hint="@string/content_hint">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:maxLength="5000"
+                    android:textColor="@android:color/black" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/hashtags_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content_cardview"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="16dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/hashtags_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:hint="@string/hashtags_hint">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/hashtags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:textColor="@android:color/black" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
+

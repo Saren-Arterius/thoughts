@@ -1,0 +1,27 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/thought_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thought_list"
+            android:layout_centerHorizontal="true"
+            android:text="@string/submit"
+            android:textColor="@android:color/white"
+            android:theme="@style/Button.MainButton" />
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
+

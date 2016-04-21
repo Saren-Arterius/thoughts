@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_upvote"
+        android:title="@string/upvote" />
+    <item
+        android:id="@+id/action_downvote"
+        android:title="@string/downvote" />
+    <item
+        android:id="@+id/action_favourite"
+        android:title="@string/add_to_favourite" />
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/share" />
+</menu>
