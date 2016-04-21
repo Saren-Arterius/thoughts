@@ -19,7 +19,7 @@ import net.wtako.thoughts.activities.MainActivity;
 
 public class MyGcmListenerService extends GcmListenerService {
 
-    private static final SparseBooleanArray mNotified = new SparseBooleanArray();
+    public static final SparseBooleanArray mNotified = new SparseBooleanArray();
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
