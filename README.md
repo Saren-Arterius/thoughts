@@ -14,6 +14,9 @@ https://play.google.com/store/apps/details?id=net.wtako.thoughts&hl=zh_HK
 - Home screen widget
 - GCM
 
+# Self hosting Thoughts REST backend?
+Edit `thoughts/app/src/main/java/net/wtako/thoughts/Thoughts.java`, change the value of `public static final String AUTHORITY` to your backend, for example, `http://192.168.0.100:3000`, then rebuild the APK for yourself.
+
 # FOSS
 Thoughts, including its backend server, is also a FOSS application.
 - Android app source code (Apache-2.0): https://github.com/Saren-Arterius/thoughts
