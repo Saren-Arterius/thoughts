@@ -45,11 +45,17 @@
 -keep class sun.misc.Unsafe { *; }
 
 ##--------------- Begin: proguard configuration for Glide ----------
+-dontwarn com.squareup.okhttp.**
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
     **[] $VALUES;
     public *;
 }
+
+##--------------- Begin: proguard configuration for Bypasses ----------
+
+-keep class in.uncod.android.** { *; }
+
 
 ##----------------- App specific -----------------
 -keepclassmembers class net.wtako.thoughts.data.* {
