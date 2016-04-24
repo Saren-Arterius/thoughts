@@ -13,6 +13,7 @@ import com.google.android.gms.iid.InstanceID;
 
 import net.wtako.thoughts.R;
 import net.wtako.thoughts.utils.Database;
+import net.wtako.thoughts.utils.StringUtils;
 
 import java.io.IOException;
 
@@ -74,7 +75,6 @@ public class RegistrationIntentService extends IntentService {
      * <p/>
      * Modify this method to associate the user's GCM registration token with any server-side account
      * maintained by your application.
-     *
      */
     private void sendRegistrationToServer() {
         // Add custom implementation, as needed.
@@ -90,10 +90,9 @@ public class RegistrationIntentService extends IntentService {
         if (instance == null || token == null) {
             return;
         }
-        Log.w(TAG, "subscribeTopics");
         GcmPubSub pubSub = GcmPubSub.getInstance(instance);
         for (String hashTag : Database.getMonitoredHashTags(instance.getBaseContext()).getSavedData()) {
-            pubSub.subscribe(token, "/topics/" + hashTag.toLowerCase(), null);
+            pubSub.subscribe(token, "/topics/" + StringUtils.md5(hashTag.toLowerCase()), null);
         }
     }
     // [END subscribe_topics]
