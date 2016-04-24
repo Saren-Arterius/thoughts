@@ -27,7 +27,6 @@ import net.wtako.thoughts.adapters.ThoughtsAdapter;
 import net.wtako.thoughts.data.MyThought;
 import net.wtako.thoughts.data.Thought;
 import net.wtako.thoughts.interfaces.ILoadMore;
-import net.wtako.thoughts.services.MyGcmListenerService;
 import net.wtako.thoughts.utils.Database;
 import net.wtako.thoughts.utils.ItemClickSupport;
 import net.wtako.thoughts.utils.MiscUtils;
@@ -112,7 +111,7 @@ public class PreviewThoughtFragment extends BaseFragment implements ILoadMore {
                     pd.dismiss();
                     try {
                         MyThought myThought = Thoughts.sGson.fromJson(response.getString("thought"), MyThought.class);
-                        MyGcmListenerService.mNotified.append(myThought.getID(), true);
+                        //MyGcmListenerService.mNotified.append(myThought.getID(), true);
                         Database.getMyThoughts(getActivity()).prependOrBringToFront(myThought).save(true);
                         Intent intent = new Intent(getContext(), MyThoughtsActivity.class);
                         intent.putExtra("new", myThought.getID());

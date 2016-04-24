@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -28,10 +29,11 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import net.wtako.thoughts.R;
-import net.wtako.thoughts.Thoughts;
+import net.wtako.thoughts.services.RegistrationIntentService;
 import net.wtako.thoughts.utils.Database;
 import net.wtako.thoughts.utils.DatabaseData;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -172,6 +174,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 || NotificationPreferenceFragment.class.getName().equals(fragmentName);
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
@@ -292,6 +305,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                             data.getSavedData().clear();
                             String[] hashTags = et.getText().toString().split("\n");
                             for (String hashTag : hashTags) {
+                                if (hashTag.length() >= 1 && hashTag.charAt(0) == '#') {
+                                    hashTag = hashTag.substring(1);
+                                }
                                 hashTag = hashTag.trim();
                                 if (hashTag.isEmpty()) {
                                     continue;
@@ -299,7 +315,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                                 data.addUnique(hashTag).save(false);
                             }
                             data.save(false);
-                            Thoughts.tryStartGCM(getActivity());
+                            resubscribeGCM();
                             hashTagMonitor();
                         }
                     }).cancelListener(new DialogInterface.OnCancelListener() {
@@ -308,6 +324,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     hashTagMonitor();
                 }
             }).positiveText(R.string.add).show();
+        }
+
+        private void resubscribeGCM() {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    try {
+                        RegistrationIntentService.subscribeTopics();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
     }
 
