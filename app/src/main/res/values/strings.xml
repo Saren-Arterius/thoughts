@@ -16,7 +16,7 @@
     <string name="toggle_fullscreen">Toggle fullscreen</string>
     <string name="app_version_format" translatable="false">%1$s v%2$s</string>
     <string name="force_update_format">Change:\n%1$s\n\nDate: %2$s\n\nApplication update is required.</string>
-    <string name="about_format">%1$s\nAuthor: 14178556A (Saren)\nA CCN2279 Group Project</string>
+    <string name="about_format">%1$s\nCompiled by: Saren\nA CCN2279 Group Project</string>
     <string name="update_format"><![CDATA[Update: ]]></string>
 
     <string name="update_change">Change:</string>
