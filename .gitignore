@@ -1,4 +1,3 @@
-app/google-services.json
 
 #built application files
 *.apk *.ap_ *.txt *.log app/*.txt
